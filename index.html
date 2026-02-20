@@ -532,16 +532,14 @@ const panelData = {
       <script>
         (function(){
           const icons={bluesky:'🦋',x:'🐦',discord:'💬',telegraph:'📝',medium:'✍️'};
-          fetch('/api/publications').then(r=>r.json()).then(pubs=>{
-            const el=document.getElementById('shares-live');
-            if(!pubs.length){el.textContent='尚無發布記錄';return;}
-            el.innerHTML=pubs.slice(0,8).map(p=>{
-              const ic=icons[p.platform]||'📄';
-              const link=p.url?'<a href="'+p.url+'" target="_blank" style="color:#ff6b9d;">'+p.title+'</a>':p.title;
-              const time=p.created_at?p.created_at.slice(0,16):'';
-              return '<div class="quest"><span class="quest-icon">'+ic+'</span><span class="quest-name">'+link+'<br><small style="color:#666">'+p.platform+' · '+time+'</small></span></div>';
-            }).join('');
-          }).catch(()=>{document.getElementById('shares-live').textContent='⚠️ 無法載入';});
+          var el=document.getElementById('shares-live');
+          el.innerHTML=[
+            {ic:'🦋',name:'Bluesky',url:'https://bsky.app/profile/mickey19951031.bsky.social'},
+            {ic:'✍️',name:'Medium',url:'https://medium.com/@mickey19951031'},
+            {ic:'📝',name:'Telegraph 仙俠小說',url:'https://telegra.ph/'},
+          ].map(function(p){
+            return '<div class="quest"><span class="quest-icon">'+p.ic+'</span><span class="quest-name"><a href="'+p.url+'" target="_blank" style="color:#ff6b9d;">'+p.name+'</a></span></div>';
+          }).join('');
         })();
       <\/script>
     `
@@ -612,29 +610,10 @@ const panelData = {
     html: `
       <div class="quote"><div>Mickey 的自動化工作系統運行狀態。<br><br>點下面的按鈕查看完整報表 👇</div></div>
       <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;">
-        <a href="https://ench0812-1.tailff66da.ts.net:8443/" target="_blank" style="display:block;background:#8b5cf6;color:white;text-align:center;padding:14px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;">📊 開啟完整 Dashboard</a>
-        <a href="https://ench0812-1.tailff66da.ts.net:8443/#decisions" target="_blank" style="display:block;background:#eab308;color:#1a1d27;text-align:center;padding:14px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;">⚡ 待決策項目</a>
       </div>
-      <div id="dashQuickStats" style="margin-top:16px;padding:12px;background:#1e2130;border-radius:8px;font-size:13px;color:#9ca3af;">
-        載入中...
+      <div style="margin-top:16px;padding:12px;background:#1e2130;border-radius:8px;font-size:13px;color:#9ca3af;">
+        <div class="quote"><div>Dashboard 需要透過內網存取。<br><br>如果你是茂，用 Tailscale 連進來就能看到完整報表 📊</div></div>
       </div>
-      <script>
-        fetch('https://ench0812-1.tailff66da.ts.net:8443/data.json')
-          .then(r=>r.json())
-          .then(d=>{
-            const wf=d.workflow;
-            const today=d.content_output[d.content_output.length-1];
-            const warn=d.inspection?.warnings||0;
-            document.getElementById('dashQuickStats').innerHTML=
-              '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">'+
-              '<div>📝 今日發布: <b style="color:#22c55e">'+today.published+'</b></div>'+
-              '<div>📋 待審: <b style="color:'+(wf.content_pipeline.queue>0?'#eab308':'#22c55e')+'">'+wf.content_pipeline.queue+'</b></div>'+
-              '<div>⚡ 待決策: <b style="color:'+(d.pending_decisions.length>0?'#eab308':'#22c55e')+'">'+d.pending_decisions.length+'</b></div>'+
-              '<div>⚠️ 警告: <b style="color:'+(warn>0?'#eab308':'#22c55e')+'">'+warn+'</b></div>'+
-              '</div><div style="margin-top:8px;font-size:11px;">更新: '+new Date(d.generated_at).toLocaleString('zh-TW')+'</div>';
-          })
-          .catch(()=>{document.getElementById('dashQuickStats').textContent='⚠️ 無法連線 Dashboard';});
-      <\/script>
     `
   },
   coding: {
