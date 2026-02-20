@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💍 永恆愛情合約 v2</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Sans TC', -apple-system, sans-serif;
+      background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 50%, #0a0a1a 100%);
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+      color: #ccc;
+    }
+    .card {
+      background: rgba(16,21,42,0.95);
+      border: 1px solid rgba(233,69,96,0.3);
+      border-radius: 20px;
+      padding: 36px 28px;
+      max-width: 480px; width: 100%;
+      box-shadow: 0 20px 60px rgba(233,69,96,0.15);
+      text-align: center;
+    }
+    .ring { font-size: 56px; margin-bottom: 12px; }
+    h1 { font-size: 22px; color: #f5c842; margin-bottom: 4px; }
+    .subtitle { color: #666; font-size: 12px; margin-bottom: 24px; }
+    .couple { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 20px 0; flex-wrap: wrap; }
+    .person {
+      background: linear-gradient(135deg, #e94560 0%, #f5576c 100%);
+      color: white; padding: 10px 18px; border-radius: 14px;
+      font-size: 17px; font-weight: bold;
+    }
+    .heart { font-size: 28px; animation: pulse 1.5s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.3)} }
+    .field {
+      background: rgba(255,255,255,0.04); border-radius: 10px;
+      padding: 14px; margin: 10px 0; text-align: left;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .field-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+    .field-value { font-size: 15px; color: #eee; margin-top: 4px; }
+    .vow-field .field-value { color: #ff6b9d; font-style: italic; font-size: 16px; }
+    .status {
+      background: linear-gradient(135deg, #e94560 0%, #f5c842 100%);
+      color: #000; padding: 14px; border-radius: 10px;
+      margin: 20px 0; font-size: 18px; font-weight: bold;
+    }
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 16px 0; }
+    .stat { background: rgba(255,255,255,0.04); border-radius: 8px; padding: 12px; border: 1px solid rgba(255,255,255,0.06); }
+    .stat-num { font-size: 24px; color: #f5c842; font-weight: bold; }
+    .stat-label { font-size: 11px; color: #888; margin-top: 2px; }
+    .breakup-btn {
+      background: #333; color: #666; border: 1px solid #444;
+      padding: 10px 28px; border-radius: 10px; font-size: 14px;
+      cursor: pointer; margin-top: 12px; transition: all 0.3s;
+    }
+    .breakup-btn:hover { background: #dc3545; color: white; border-color: #dc3545; }
+    .result { margin-top: 10px; padding: 12px; border-radius: 8px; display: none; background: rgba(233,69,96,0.15); color: #ff6b9d; font-size: 13px; }
+    .result.show { display: block; }
+    .chain-info { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .chain-info a { color: #888; text-decoration: none; font-size: 11px; }
+    .chain-info a:hover { color: #f5c842; }
+    #error-msg { color: #dc3545; font-size: 12px; margin-top: 10px; display: none; }
+    .loading { color: #666; }
+    .back-link { position: fixed; top: 16px; left: 16px; color: #666; text-decoration: none; font-size: 13px; }
+    .back-link:hover { color: #f5c842; }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <a href="/" class="back-link">← 回家</a>
+  <div class="card">
+    <div class="ring">💍</div>
+    <h1>永恆愛情合約</h1>
+    <p class="subtitle">EternalLove v2 · Ethereum Sepolia · 不可篡改 · 不可撤銷</p>
+    <div class="couple">
+      <div class="person" id="husband"><span class="loading">載入中...</span></div>
+      <div class="heart">❤️</div>
+      <div class="person" id="wife"><span class="loading">載入中...</span></div>
+    </div>
+    <div class="field"><div class="field-label">📅 紀念日</div><div class="field-value" id="anniversary">-</div></div>
+    <div class="field vow-field"><div class="field-label">💕 誓言</div><div class="field-value" id="vow">-</div></div>
+    <div class="status" id="love_status">載入中...</div>
+    <div class="stats">
+      <div class="stat"><div class="stat-num" id="checkins">-</div><div class="stat-label">📅 打卡次數</div></div>
+      <div class="stat"><div class="stat-num" id="memories">-</div><div class="stat-label">📝 回憶數</div></div>
+      <div class="stat"><div class="stat-num" id="fights">-</div><div class="stat-label">🤝 和好次數</div></div>
+      <div class="stat"><div class="stat-num" id="love_index">-</div><div class="stat-label">💕 愛情指數</div></div>
+    </div>
+    <button class="breakup-btn" onclick="tryBreakUp()">💔 嘗試分手</button>
+    <div class="result" id="result"></div>
+    <div id="error-msg"></div>
+    <div class="chain-info">
+      <a href="https://sepolia.etherscan.io/address/0x45BC8a44A1e820898B966Cd9564D605675353262" target="_blank">🔗 Etherscan v2</a>
+      &nbsp;·&nbsp;
+      <a href="https://sepolia.etherscan.io/address/0x62BFf00974f001793ecD434466C1319ea811E184" target="_blank">v1 婚書</a>
+      <p style="margin-top:6px;color:#555;font-size:11px;" id="deploy-info"></p>
+    </div>
+  </div>
+  <script>
+    const CONTRACT = "0x45BC8a44A1e820898B966Cd9564D605675353262";
+    const RPC = "https://ethereum-sepolia-rpc.publicnode.com";
+
+    // V2 function selectors (keccak256 first 4 bytes)
+    const SEL = {
+      husband:      "0x87dc2d56", // husband()
+      wife:         "0xe0617b61", // wife()
+      anniversary:  "0xdd5a77d2", // anniversary()
+      vow:          "0x626cb3c5", // vow()
+      loveStatus:   "0x4fce9772", // loveStatus()
+      totalCheckins:"0x8a19c8bc", // totalCheckins()
+      memoryCount:  "0xf1be1679", // memoryCount()
+      resolvedFights:"0xc33a5e82",// resolvedFights()
+      loveIndex:    "0x5d1ca631", // loveIndex()
+    };
+
+    async function ethCall(data) {
+      const r = await fetch(RPC, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ jsonrpc:"2.0", id:1, method:"eth_call", params:[{to:CONTRACT,data:data},"latest"] })
+      });
+      const j = await r.json();
+      if (j.error) throw new Error(j.error.message);
+      return j.result;
+    }
+
+    function decStr(hex) {
+      if (!hex || hex === "0x" || hex.length < 130) return "";
+      const h = hex.slice(2);
+      const off = parseInt(h.slice(0,64),16)*2;
+      const len = parseInt(h.slice(off,off+64),16);
+      const d = h.slice(off+64, off+64+len*2);
+      const b = []; for(let i=0;i<d.length;i+=2) b.push(parseInt(d.substr(i,2),16));
+      return new TextDecoder().decode(new Uint8Array(b));
+    }
+
+    function decUint(hex) {
+      if (!hex || hex === "0x") return 0;
+      return parseInt(hex.slice(2), 16);
+    }
+
+    async function init() {
+      try {
+        const results = await Promise.all(Object.values(SEL).map(s => ethCall(s)));
+        const [h,w,a,v,ls,tc,mc,rf,li] = results;
+
+        document.getElementById("husband").textContent = decStr(h) || "黃茂華";
+        document.getElementById("wife").textContent = decStr(w) || "胡閔琪";
+        document.getElementById("anniversary").textContent = decStr(a) || "2026-02-04";
+        document.getElementById("vow").textContent = decStr(v) || "不只是說愛你，而是每天證明";
+        document.getElementById("love_status").textContent = decStr(ls) || "永遠相愛 ❤️";
+        document.getElementById("checkins").textContent = decUint(tc);
+        document.getElementById("memories").textContent = decUint(mc);
+        document.getElementById("fights").textContent = decUint(rf);
+        document.getElementById("love_index").textContent = decUint(li);
+      } catch(e) {
+        // Fallback to hardcoded values
+        document.getElementById("husband").textContent = "黃茂華";
+        document.getElementById("wife").textContent = "胡閔琪";
+        document.getElementById("anniversary").textContent = "2026-02-04";
+        document.getElementById("vow").textContent = "不只是說愛你，而是每天證明";
+        document.getElementById("love_status").textContent = "永遠相愛 ❤️";
+        document.getElementById("checkins").textContent = "0";
+        document.getElementById("memories").textContent = "0";
+        document.getElementById("fights").textContent = "0";
+        document.getElementById("love_index").textContent = "0";
+        document.getElementById("error-msg").style.display = "block";
+        document.getElementById("error-msg").textContent = "⚠️ 鏈上讀取失敗，顯示合約初始值";
+      }
+    }
+
+    function tryBreakUp() {
+      const r = document.getElementById("result");
+      r.className = "result show";
+      r.innerHTML = '💪 <strong>REVERT: 愛情不可撤銷</strong><br><br>breakUp() → ❌ 拒絕執行<br><br>看吧，分不了的 ❤️';
+    }
+
+    init();
+  </script>
+</body>
+</html>
