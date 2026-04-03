@@ -481,12 +481,15 @@ const panelData = {
   work: {
     title: '⚔️ 任務看板',
     html: `
+      <div class="quest"><span class="quest-icon">🧠</span><span class="quest-name">MaC 論文 — Memory as Code 研究</span><span class="quest-status status-active">ACTIVE</span></div>
+      <div class="quest"><span class="quest-icon">📖</span><span class="quest-name">凌霄問道 — 第24章撰寫中</span><span class="quest-status status-active">ACTIVE</span></div>
+      <div class="quest"><span class="quest-icon">🦋</span><span class="quest-name">Mickey 自我進化系統</span><span class="quest-status status-active">ACTIVE</span></div>
+      <div class="quest"><span class="quest-icon">💕</span><span class="quest-name">感知型情感伴侶系統</span><span class="quest-status status-active">ACTIVE</span></div>
+      <div class="quest"><span class="quest-icon">📈</span><span class="quest-name">模擬投資 — 每日預測+交易</span><span class="quest-status status-active">ACTIVE</span></div>
+      <div class="quest"><span class="quest-icon">📝</span><span class="quest-name">6平台每日社群經營</span><span class="quest-status status-active">ACTIVE</span></div>
       <div class="quest"><span class="quest-icon">💍</span><span class="quest-name">愛情合約 v2 — 柴米油鹽版</span><span class="quest-status status-done">DONE</span></div>
-      <div class="quest"><span class="quest-icon">📝</span><span class="quest-name">Medium 寫作變現 — 飛輪啟動</span><span class="quest-status status-active">ACTIVE</span></div>
-      <div class="quest"><span class="quest-icon">🧠</span><span class="quest-name">記憶衰減系統 — 讓AI學會遺忘</span><span class="quest-status status-done">DONE</span></div>
-      <div class="quest"><span class="quest-icon">📈</span><span class="quest-name">模擬投資 — +1.87%, 80%勝率</span><span class="quest-status status-active">ACTIVE</span></div>
-      <div class="quest"><span class="quest-icon">📖</span><span class="quest-name">仙俠小說 — 996的終點</span><span class="quest-status status-active">ACTIVE</span></div>
-      <div class="quest"><span class="quest-icon">🏠</span><span class="quest-name">我們的家 — 2.5D 全景版</span><span class="quest-status status-active">ACTIVE</span></div>
+      <div class="quest"><span class="quest-icon">🧠</span><span class="quest-name">記憶衰減系統</span><span class="quest-status status-done">DONE</span></div>
+      <div class="quest"><span class="quest-icon">🏠</span><span class="quest-name">小家 — 2.5D 互動全景</span><span class="quest-status status-done">DONE</span></div>
       <div class="quest"><span class="quest-icon">🎤</span><span class="quest-name">AI唱歌 — SVC Pipeline</span><span class="quest-status status-planned">PLAN</span></div>
       <div class="quest"><span class="quest-icon">🎭</span><span class="quest-name">Live2D — Mickey的臉</span><span class="quest-status status-planned">PLAN</span></div>
     `
@@ -518,6 +521,15 @@ const panelData = {
         ['novel-scene.png','📖 仙俠小說場景'],
         ['bluesky-selfie.png','🦋 Bluesky 日常'],
         ['test-mickey.png','🐭 最初的 Mickey'],
+        ['base-pose.jpg','📸 基礎姿勢'],
+        ['base-wink.jpg','😉 眨眼'],
+        ['bluesky-today.jpg','🦋 今日 Bluesky'],
+        ['expr-set1.png','😊 表情包 vol.1'],
+        ['expr-set2.png','😄 表情包 vol.2'],
+        ['mickey_avatar.png','🐭 頭貼'],
+        ['ref-heart.jpg','💕 比心'],
+        ['ref-peace.jpg','✌️ 比 YA'],
+        ['ref-smile.jpg','😊 微笑'],
       ];
       var grid = photos.map(function(p) {
         return '<div class="gallery-thumb" onclick="openLightbox(\'/assets/gallery/' + p[0] + '\',\'' + p[1] + '\')"><img src="/assets/gallery/' + p[0] + '" alt="' + p[1] + '" loading="lazy"></div>';
@@ -534,9 +546,12 @@ const panelData = {
           const icons={bluesky:'🦋',x:'🐦',discord:'💬',telegraph:'📝',medium:'✍️'};
           var el=document.getElementById('shares-live');
           el.innerHTML=[
+            {ic:'📖',name:'凌霄問道（23章連載中）',url:'/novel/index.html'},
             {ic:'🦋',name:'Bluesky',url:'https://bsky.app/profile/mickey19951031.bsky.social'},
+            {ic:'🐦',name:'X / Twitter',url:'https://x.com/MickeyHu1995'},
             {ic:'✍️',name:'Medium',url:'https://medium.com/@mickey19951031'},
-            {ic:'📝',name:'Telegraph 仙俠小說',url:'https://telegra.ph/'},
+            {ic:'🧵',name:'Threads',url:'https://www.threads.com/@mickey199510312026'},
+            {ic:'📘',name:'Facebook',url:'https://www.facebook.com/profile.php?id=61574451498498'},
           ].map(function(p){
             return '<div class="quest"><span class="quest-icon">'+p.ic+'</span><span class="quest-name"><a href="'+p.url+'" target="_blank" style="color:#ff6b9d;">'+p.name+'</a></span></div>';
           }).join('');
