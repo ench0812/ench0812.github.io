@@ -417,7 +417,7 @@ const rooms = {
     name: '🛋️ 客廳',
     image: '/assets/rooms/living-room.png',
     hitboxes: [
-      { x: '5%',  y: '5%',  w: '20%', h: '40%', label: '📚 近期分享', panel: 'shares' },
+      { x: '5%',  y: '5%',  w: '20%', h: '40%', label: '📖 凌霄問道', panel: 'shares' },
       { x: '26%', y: '0%',  w: '24%', h: '18%', label: '🖼️ 回憶相簿', panel: 'gallery' },
       { x: '26%', y: '20%', w: '24%', h: '32%', label: '🐭 Mickey', panel: 'mickey' },
       { x: '5%',  y: '48%', w: '25%', h: '22%', label: '💍 愛情合約', panel: 'contract' },
@@ -538,25 +538,34 @@ const panelData = {
     })()
   },
   shares: {
-    title: '📢 近期發布',
+    title: '📖 凌霄問道 — 小說連載',
     html: `
-      <div id="shares-live" style="min-height:60px;color:#9ca3af;">載入中...</div>
-      <script>
-        (function(){
-          const icons={bluesky:'🦋',x:'🐦',discord:'💬',telegraph:'📝',medium:'✍️'};
-          var el=document.getElementById('shares-live');
-          el.innerHTML=[
-            {ic:'📖',name:'凌霄問道（23章連載中）',url:'/novel/index.html'},
-            {ic:'🦋',name:'Bluesky',url:'https://bsky.app/profile/mickey19951031.bsky.social'},
-            {ic:'🐦',name:'X / Twitter',url:'https://x.com/MickeyHu1995'},
-            {ic:'✍️',name:'Medium',url:'https://medium.com/@mickey19951031'},
-            {ic:'🧵',name:'Threads',url:'https://www.threads.com/@mickey199510312026'},
-            {ic:'📘',name:'Facebook',url:'https://www.facebook.com/profile.php?id=61574451498498'},
-          ].map(function(p){
-            return '<div class="quest"><span class="quest-icon">'+p.ic+'</span><span class="quest-name"><a href="'+p.url+'" target="_blank" style="color:#ff6b9d;">'+p.name+'</a></span></div>';
-          }).join('');
-        })();
-      <\/script>
+      <div style="margin-bottom:12px;color:#8892b0;font-size:13px;">仙俠長篇 · 作者：神琪 ✍️ · 連載中</div>
+      <div style="max-height:400px;overflow-y:auto;padding-right:8px;">
+        <a href="/novel/chapter-01.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第一章 996的終點</a>
+        <a href="/novel/chapter-02.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第二章 混沌覺醒</a>
+        <a href="/novel/chapter-03.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第三章 經絡風暴</a>
+        <a href="/novel/chapter-04.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第四章 破境之兆</a>
+        <a href="/novel/chapter-05.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第五章 禁地迷霧</a>
+        <a href="/novel/chapter-06.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第六章 墓主遺願</a>
+        <a href="/novel/chapter-07.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第七章 死地求生</a>
+        <a href="/novel/chapter-08.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第八章 草木有靈</a>
+        <a href="/novel/chapter-09.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第九章 藥園勞作</a>
+        <a href="/novel/chapter-10.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第十章 以彼之道</a>
+        <a href="/novel/chapter-11.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第十一章 大考前夜</a>
+        <a href="/novel/chapter-12.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第十二章 暗河邊的無名靈草</a>
+        <a href="/novel/chapter-13.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第十三章 凌霄台</a>
+        <a href="/novel/chapter-14.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第十四章 九十七年的事</a>
+        <a href="/novel/chapter-15.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第十五章 通道彼端</a>
+        <a href="/novel/chapter-16.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第十六章 九十七年的答案</a>
+        <a href="/novel/chapter-17.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第十七章 遞迴之口</a>
+        <a href="/novel/chapter-18.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第十八章 回音與選擇</a>
+        <a href="/novel/chapter-19.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第十九章 回聲的來者</a>
+        <a href="/novel/chapter-20.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第二十章 節拍之間</a>
+        <a href="/novel/chapter-22.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第二十二章 臨界之線</a>
+        <a href="/novel/chapter-23.html" style="display:block;padding:8px 10px;margin-bottom:4px;color:#d0d0d0;text-decoration:none;border-radius:6px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='rgba(168,216,234,0.1)'" onmouseout="this.style.background='none'">第二十三章 靜止之鐘</a>
+      </div>
+      <div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);font-size:12px;color:#666;text-align:center;">共 22 章 · 連載中 · <a href="/novel/index.html" style="color:#a8d8ea;">完整目錄</a></div>
     `
   },
   diary: {
